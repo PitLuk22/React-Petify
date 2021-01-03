@@ -1,0 +1,53 @@
+.library-song {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	padding: .7rem;
+	margin-bottom: 1rem;
+	margin-left: 2rem;
+	cursor: pointer;
+	transition: all .1s ease;
+	&:hover {
+		background-color: #1db954;
+		h3 {
+			color: #fff;
+		}
+	}
+	&__img {
+		width: 30%;
+		margin-right: 2rem;
+	}
+	&__descr {
+		display: flex;
+		flex-direction: column;
+		gap: 0.7rem;
+		h4 {
+			color: #c4c4c4;
+			font-size: 0.9rem;
+		}
+	}
+}
+
+.library-song-active {
+	background-color: #5b5b5ba3;
+	h3 {
+		color: #1db954;
+	}
+}
+
+* {
+	scrollbar-width: thin;
+	scrollbar-color: rgba(155,155,155, .5) transparent;
+}
+
+*::-webkit-scrollbar {
+	width: 5px;
+}
+*::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+*::-webkit-scrollbar-thumb {
+	background-color: rgba(155,155,155, .5);
+	border-radius: 20px;
+	border: transparent;
+}

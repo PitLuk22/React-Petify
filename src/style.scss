@@ -1,0 +1,28 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	width: 100%;
+	height: 100%;
+	background-color: #212121;
+	font-family:'Lato', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	overflow-x: hidden;
+}
+.app {
+	max-height: 100vh;
+	transition: all .5s ease;
+	overflow: hidden;
+}
+.ml20 {
+	margin-left: 25%;
+}
+
+@import './components/player/player';
+@import './components/song/song';
+@import './components/library/library';
+@import './components/library-song/library-song';
+@import './components/nav/nav';

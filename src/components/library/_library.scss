@@ -1,0 +1,33 @@
+.library {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 25rem;
+	height: 100%;
+	background-color: #171717;
+	box-shadow: none;
+	color: #fff;
+	display: flex;
+	flex-direction: column;
+	transform: translateX(-100%);
+	transition: all .5s ease;
+	z-index: 5;
+	h2 {
+		padding: 1.5rem;
+		font-size: 1.7rem;
+	}
+	&__songs {
+		height: 100%;
+		overflow: scroll;
+	}
+	&-active {
+		transform: translateX(0);
+		box-shadow: 5px 5px 40px rgb(0,0,0);
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.library {
+		width: 100%;
+	}
+}

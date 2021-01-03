@@ -1,0 +1,191 @@
+.player {
+	// position: relative;
+	min-height: 20vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	background-color: #212121;
+	color:#b3b3b3;
+	padding: 1rem;
+	z-index: 4;
+	.control {
+		width: 50%;
+		padding: 1rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		&__play {
+			margin: 0 50px;
+		}
+		&__prev, &__play, &__next {
+			transition: .3s all ease;
+			cursor: pointer;
+			&:hover {
+				color: #1db954;
+			}
+		}
+	}
+	.timeline {
+		position: relative;
+		width: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		&__range {
+			width: 100%;
+			padding: 1rem 0;
+		}
+		&__start, &__end {
+			padding: 1rem;
+			width: 100px;
+			text-align: center;
+		}
+		.range {
+			--thumbSize: 15px;
+			--trackSize: 5px;
+			--thumbBg: #fff;
+			--trackBg: #656565;
+			--progressBg: #1db954;
+		  
+			/* webkit progress workaround */
+			// --webkitProgressPercent: 0%;
+		  }
+		  
+		  .range {
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			height: var(--thumbSize);
+			width: 100%;
+			margin: 0;
+			padding: 0;
+			background-color: #212121;
+			cursor: pointer;
+		  }
+		  .range:focus {
+			outline: none;
+		  }
+		  
+		  /* Thumb */
+		  .range::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			appearance: none;
+			width: var(--thumbSize);
+			height: var(--thumbSize);
+			background-color: var(--thumbBg);
+			border-radius: calc(var(--thumbSize) / 2);
+			border: none;
+			box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+			margin-top: calc(((var(--thumbSize) - var(--trackSize)) / 2) * -1);
+			cursor: pointer;
+		  }
+		  .range::-moz-range-thumb {
+			-moz-appearance: none;
+			appearance: none;
+			width: var(--thumbSize);
+			height: var(--thumbSize);
+			background-color: var(--thumbBg);
+			border-radius: calc(var(--thumbSize) / 2);
+			border: none;
+			box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+			margin-top: calc(((var(--thumbSize) - var(--trackSize)) / 2) * -1);
+			cursor: pointer;
+		  }
+		  .range::-ms-thumb {
+			-ms-appearance: none;
+			appearance: none;
+			width: var(--thumbSize);
+			height: var(--thumbSize);
+			background-color: var(--thumbBg);
+			border-radius: calc(var(--thumbSize) / 2);
+			border: none;
+			box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+			margin-top: calc(((var(--thumbSize) - var(--trackSize)) / 2) * -1);
+			cursor: pointer;
+		  }
+		  
+		  /* Track */
+		  .timeline__range::-webkit-slider-runnable-track {
+			height: var(--trackSize);
+			background-image: linear-gradient(
+			  90deg,
+			  var(--progressBg) var(--webkitProgressPercent),
+			  var(--trackBg) var(--webkitProgressPercent)
+			);
+			border-radius: calc(var(--trackSize) / 2);
+		  }
+		  
+		  .range::-moz-range-track {
+			height: var(--trackSize);
+			background-color: var(--trackBg);
+			border-radius: calc(var(--trackSize) / 2);
+		  }
+		  .range::-ms-track {
+			height: var(--trackSize);
+			background-color: var(--trackBg);
+			border-radius: calc(var(--trackSize) / 2);
+		  }
+		  
+		  /* Progress */
+		  .range::-moz-range-progress {
+			height: var(--trackSize);
+			background-color: var(--progressBg);
+			border-radius: calc(var(--trackSize) / 2) 0 0 calc(var(--trackSize) / 2);
+		  }
+		  .range::-ms-fill-lower {
+			height: var(--trackSize);
+			background-color: var(--progressBg);
+			border-radius: calc(var(--trackSize) / 2) 0 0 calc(var(--trackSize) / 2);
+		  }
+		  
+	}
+	.volume {
+		position: absolute;
+		top: 3px;
+		right: -80px;
+		display: flex;
+		flex-direction: column-reverse;
+		justify-content: center;
+		align-items: center;
+		width: 70px;
+		svg {
+			background-color: #212121;
+			cursor: pointer;
+			z-index: 3;
+		}
+		&__range {
+			transition: transform .3s ease, opacity .2s, visibility .5s ;
+			transform: rotate(-90deg) translate(10px, -4px);
+			opacity: 0;
+			visibility: hidden;
+			&::-webkit-slider-runnable-track {
+				height: var(--trackSize);
+				background-image: linear-gradient(
+				  90deg,
+				  var(--progressBg) var(--webkitProgressPercentVolume),
+				  var(--trackBg) var(--webkitProgressPercentVolume)
+				);
+				border-radius: calc(var(--trackSize) / 2);
+			  }
+			
+		}
+		&__range-active {
+			transform: rotate(-90deg) translate(40px, -4px);
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.player {
+		.timeline {
+			width: 90%;
+		}
+		.volume {
+			right: -50px;
+		}
+	}
+}

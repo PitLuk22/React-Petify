@@ -1,0 +1,41 @@
+.navbar {
+	min-height: 10vh;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	background-color: #121212;
+	&__logo {
+		position: inline;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: #fff;
+		img {
+			width: 35px;
+			margin-right: 20px;
+		}
+	}
+	&__button {
+		background: transparent;
+		border: 1px solid #b3b3b3;
+		padding: 0.5rem;
+		color:#fff;
+		font-size: 1rem;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: all .3s ease;
+		z-index: 10;
+		span {
+			margin-right: 5px;
+		}
+		svg {
+			display: inline-block;
+			color: var(--first);
+		}
+		&:hover {
+			color:#b3b3b3;
+		}
+	}
+	
+}
+
