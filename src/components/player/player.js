@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStepBackward, faStepForward, faVolumeUp } from '@fortawesome/free-solid-svg-icons';
+import { faStepBackward, faStepForward, faVolumeUp, faVolumeMute } from '@fortawesome/free-solid-svg-icons';
 import { faPlayCircle, faPauseCircle } from '@fortawesome/free-regular-svg-icons';
 
 import { playAudio } from '../../util';
@@ -139,7 +139,7 @@ const Player = ({ songs, currentSong, setCurrentSong, isPlaying, setIsPlaying, s
 				<p className='timeline__end'>{songInfo.duration ? getTime(songInfo.duration) : '0:00'}</p>
 				<div className="volume">
 					<FontAwesomeIcon
-						icon={faVolumeUp}
+						icon={songInfo.volume !== 0 ? faVolumeUp : faVolumeMute}
 						size={'1x'}
 						onClick={showVolumeInputHandler} />
 					<input
