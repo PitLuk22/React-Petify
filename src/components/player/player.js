@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStepBackward, faStepForward, faVolumeUp, faVolumeMute } from '@fortawesome/free-solid-svg-icons';
 import { faPlayCircle, faPauseCircle } from '@fortawesome/free-regular-svg-icons';
+import Like from '../like';
 
 import { playAudio } from '../../util';
 
@@ -13,7 +14,6 @@ const Player = ({ songs, currentSong, setCurrentSong, isPlaying, setIsPlaying, s
 		duration: 0,
 		'volume': volume
 	})
-
 
 	const audioRef = useRef(null);
 
@@ -96,7 +96,6 @@ const Player = ({ songs, currentSong, setCurrentSong, isPlaying, setIsPlaying, s
 		const inputValue = e.target.value;
 
 		const percent = inputValue + '%';
-		console.log(percent);
 		document.documentElement.style.setProperty('--webkitProgressPercentVolume', percent);
 
 		setVolume(inputValue / 100);
@@ -107,6 +106,7 @@ const Player = ({ songs, currentSong, setCurrentSong, isPlaying, setIsPlaying, s
 	const showVolumeInputHandler = () => {
 		showVolumeInput(!volumeInput);
 	}
+
 
 	return (
 		<div className='player'>
@@ -128,15 +128,6 @@ const Player = ({ songs, currentSong, setCurrentSong, isPlaying, setIsPlaying, s
 					icon={faStepForward} />
 			</div>
 			<div className='timeline'>
-				<p className='timeline__start'>{getTime(songInfo.currentTime)}</p>
-				<input
-					type="range"
-					className='timeline__range range'
-					onInput={dragHandler}
-					min='0'
-					max={songInfo.duration || 0}
-					value={songInfo.currentTime} />
-				<p className='timeline__end'>{songInfo.duration ? getTime(songInfo.duration) : '0:00'}</p>
 				<div className="volume">
 					<FontAwesomeIcon
 						icon={songInfo.volume !== 0 ? faVolumeUp : faVolumeMute}
@@ -151,6 +142,20 @@ const Player = ({ songs, currentSong, setCurrentSong, isPlaying, setIsPlaying, s
 						max={100}
 						value={songInfo.volume * 100} />
 				</div>
+				<p className='timeline__start'>{getTime(songInfo.currentTime)}</p>
+				<input
+					type="range"
+					className='timeline__range range'
+					onInput={dragHandler}
+					min='0'
+					max={songInfo.duration || 0}
+					value={songInfo.currentTime} />
+				<p className='timeline__end'>{songInfo.duration ? getTime(songInfo.duration) : '0:00'}</p>
+				<Like
+					currentSong={currentSong}
+					setCurrentSong={setCurrentSong}
+					songs={songs}
+					setSongs={setSongs} />
 			</div>
 
 			<audio

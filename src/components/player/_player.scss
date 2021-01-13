@@ -1,5 +1,4 @@
 .player {
-	// position: relative;
 	min-height: 20vh;
 	display: flex;
 	flex-direction: column;
@@ -12,7 +11,7 @@
 	z-index: 4;
 	.control {
 		width: 50%;
-		padding: 1rem;
+		padding: 1rem 1rem 0 1rem;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -141,10 +140,16 @@
 		  }
 		  
 	}
+	.like {
+		position: absolute;
+		top: 7px;
+		right: -50px;
+		cursor: pointer;
+	}
 	.volume {
 		position: absolute;
 		top: 3px;
-		right: -80px;
+		left: -50px;
 		display: flex;
 		flex-direction: column-reverse;
 		justify-content: center;
@@ -181,11 +186,17 @@
 
 @media screen and (max-width: 768px) {
 	.player {
+		.control {
+			padding: 1rem;
+		}
 		.timeline {
 			width: 90%;
 		}
 		.volume {
-			right: -50px;
+			left: -40px;
+		}
+		.like {
+			right: -30px;
 		}
 	}
 }

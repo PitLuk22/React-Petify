@@ -26,6 +26,11 @@
 			font-size: 0.9rem;
 		}
 	}
+	.like {
+		position: relative;
+		margin-left: auto;
+		z-index: 100;
+	}
 }
 
 .library-song-active {
