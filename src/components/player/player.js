@@ -107,6 +107,22 @@ const Player = ({ songs, currentSong, setCurrentSong, isPlaying, setIsPlaying, s
 		showVolumeInput(!volumeInput);
 	}
 
+	const setLikeHandler = (e, toggle) => {
+
+		const newSongs = songs.map(song => {
+			if (currentSong.id === song.id) {
+				return { ...song, liked: !toggle }
+			} else {
+				return { ...song }
+			}
+		});
+
+		setCurrentSong({
+			...currentSong,
+			liked: !toggle
+		})
+		setSongs(newSongs);
+	}
 
 	return (
 		<div className='player'>
@@ -152,10 +168,8 @@ const Player = ({ songs, currentSong, setCurrentSong, isPlaying, setIsPlaying, s
 					value={songInfo.currentTime} />
 				<p className='timeline__end'>{songInfo.duration ? getTime(songInfo.duration) : '0:00'}</p>
 				<Like
-					currentSong={currentSong}
-					setCurrentSong={setCurrentSong}
-					songs={songs}
-					setSongs={setSongs} />
+					setLikeHandler={(e, toggle) => setLikeHandler(e, toggle)}
+					currentSong={currentSong} />
 			</div>
 
 			<audio

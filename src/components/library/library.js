@@ -41,6 +41,8 @@ const Library = ({ songs, setCurrentSong, setSongs, library }) => {
 
 	}
 
+
+
 	return (
 		<div className={`library ${library ? 'library-active' : ''}`}>
 			<h2>Library</h2>
@@ -52,7 +54,9 @@ const Library = ({ songs, setCurrentSong, setSongs, library }) => {
 					songs.map(song => <LibrarySong
 						key={uuidv4()}
 						setSelectedSong={(selectedSong) => setSelectedSong(selectedSong)}
-						song={song} />)
+						song={song}
+						setSongs={setSongs}
+						songs={songs} />)
 				}
 			</div>
 		</div>

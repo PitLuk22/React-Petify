@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Lottie from 'lottie-react-web';
 import like from './like.json';
 
-const Like = ({ currentSong, setCurrentSong, songs, setSongs }) => {
+const Like = ({ setLikeHandler, currentSong }) => {
 
 	const [toggle, setToggle] = useState(false);
 
@@ -11,26 +11,12 @@ const Like = ({ currentSong, setCurrentSong, songs, setSongs }) => {
 	}, [toggle, currentSong])
 
 
-	const setLikeHandler = () => {
-
-		const newSongs = songs.map(song => {
-			if (currentSong.id === song.id) {
-				return { ...song, liked: !toggle }
-			} else {
-				return { ...song }
-			}
-		});
-
-		setCurrentSong({
-			...currentSong,
-			liked: !toggle
-		})
-		setToggle(!toggle);
-		setSongs(newSongs);
-	}
-
 	return (
-		<div onClick={setLikeHandler} className='like'>
+		<div onClick={(e) => {
+			setLikeHandler(e, toggle)
+			setToggle(!toggle)
+		}}
+			className='like'>
 			<Lottie
 				width={'35px'}
 				height={'35px'}
