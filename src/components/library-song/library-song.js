@@ -20,7 +20,6 @@ const LibrarySong = ({ song, setSelectedSong, setSongs, songs, setCurrentSong })
 			setCurrentSong(newSongs.find(item => song.id === item.id));
 		}
 		setSongs(newSongs);
-		return false;
 	}
 
 	return (
