@@ -7,7 +7,7 @@ const LibrarySong = ({ song, setSelectedSong, setSongs, songs, setCurrentSong })
 	const activeClass = active ? ' library-song-active' : '';
 
 	const setLikeHandlerLibrary = (e, toggle) => {
-		e.stopPropagation()
+		e.stopPropagation();
 		const newSongs = songs.map(currentSong => {
 			if (currentSong.id === song.id) {
 				return { ...currentSong, liked: !toggle }
@@ -15,8 +15,12 @@ const LibrarySong = ({ song, setSelectedSong, setSongs, songs, setCurrentSong })
 				return { ...currentSong }
 			}
 		});
-		setCurrentSong(newSongs.find(item => song.id === item.id));
+		// if we clicked like at the active song 
+		if (e.target.closest('.library-song-active')) {
+			setCurrentSong(newSongs.find(item => song.id === item.id));
+		}
 		setSongs(newSongs);
+		return false;
 	}
 
 	return (
