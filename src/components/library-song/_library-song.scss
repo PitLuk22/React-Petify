@@ -8,19 +8,12 @@
 	cursor: pointer;
 	transition: all .1s ease;
 	&:hover {
-		background-color: #1db954;
-		h3 {
-			color: #fff;
-		}
-		.like {
-			&::before {
-				background-color: #171717;
-			}
-		}
+		background-color: #5b5b5ba3;
 	}
 	&__img {
 		width: 30%;
 		margin-right: 2rem;
+		transition: all .1s ease;
 	}
 	&__descr {
 		display: flex;
@@ -36,29 +29,13 @@
 		position: relative;
 		margin-left: auto;
 		z-index: 100;
-		&:before {
-			content: '';
-			position: absolute;
-			width: 40px;
-			height: 40px;
-			background-color: #171717;
-			border-radius: 50%;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-		}
 	}
 }
 
 .library-song-active {
-	background-color: #5b5b5ba3;
+	background-color: #0000007d;
 	h3 {
 		color: #1db954;
-	}
-	.like {
-		&:before {
-			background-color: transparent;
-		}
 	}
 }
 

@@ -11,7 +11,7 @@ const musicDB = () => {
 			audio: 'https://mp3d.jamendo.com/?trackid=1791799&format=mp32&from=Xik2bdK9AmJatdiMoDZ/ig==|Vf9xMrYD/BN5HwfdcfTaLQ==',
 			active: true,
 			genre: 'rap',
-			liked: true
+			liked: false
 		},
 		{
 			name: 'Criminal',

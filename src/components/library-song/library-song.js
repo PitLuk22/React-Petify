@@ -1,7 +1,7 @@
 import React from 'react';
 import Like from '../like'
 
-const LibrarySong = ({ song, setSelectedSong, setSongs, songs }) => {
+const LibrarySong = ({ song, setSelectedSong, setSongs, songs, setCurrentSong }) => {
 
 	const { name, cover, artist, active } = song;
 	const activeClass = active ? ' library-song-active' : '';
@@ -15,6 +15,7 @@ const LibrarySong = ({ song, setSelectedSong, setSongs, songs }) => {
 				return { ...currentSong }
 			}
 		});
+		setCurrentSong(newSongs.find(item => song.id === item.id));
 		setSongs(newSongs);
 	}
 

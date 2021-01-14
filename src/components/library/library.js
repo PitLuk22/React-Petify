@@ -56,7 +56,8 @@ const Library = ({ songs, setCurrentSong, setSongs, library }) => {
 						setSelectedSong={(selectedSong) => setSelectedSong(selectedSong)}
 						song={song}
 						setSongs={setSongs}
-						songs={songs} />)
+						songs={songs}
+						setCurrentSong={setCurrentSong} />)
 				}
 			</div>
 		</div>
