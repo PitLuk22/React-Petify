@@ -29,7 +29,7 @@ const musicDB = () => {
 			artist: 'THE SAME PERSONS',
 			id: uuidv4(),
 			cover: 'https://images.jamendo.com/tracks/s1793/1793600/covers/1.600.jpg?du=1608134132',
-			color: ['#04c7f5', '#f7629a', '#FEE3B3'],
+			color: ['#f4ae47', '#f7629a', '#FEE3B3'],
 			audio: 'https://mp3d.jamendo.com/?trackid=1793168&format=mp32&from=fKKfZWJoMFHefr8ssKOKmQ==|Senzg9kiAO5NVbowGlD8YQ==',
 			active: false,
 			genre: 'rock',

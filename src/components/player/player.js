@@ -6,9 +6,10 @@ import Like from '../like';
 
 import { playAudio } from '../../util';
 
-const Player = ({ songs, currentSong, setCurrentSong, isPlaying, setIsPlaying, setSongs, volume, setVolume }) => {
+const Player = ({ songs, currentSong, setCurrentSong, isPlaying, setIsPlaying, setSongs }) => {
 
 	const [volumeInput, showVolumeInput] = useState(false);
+	const [volume, setVolume] = useState(1);
 	const [songInfo, setSongInfo] = useState({
 		currentTime: 0,
 		duration: 0,

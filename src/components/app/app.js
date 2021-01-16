@@ -12,7 +12,6 @@ function App() {
 	const [currentSong, setCurrentSong] = useState(...JSON.parse(localStorage.getItem('songs')).filter(song => song.active));
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [library, showLibrary] = useState(false);
-	const [volume, setVolume] = useState(1);
 
 	useEffect(() => {
 		if (!localStorage.getItem('songs')) {
@@ -37,9 +36,7 @@ function App() {
 				isPlaying={isPlaying}
 				setIsPlaying={setIsPlaying}
 				currentSong={currentSong}
-				setCurrentSong={setCurrentSong}
-				volume={volume}
-				setVolume={setVolume} />
+				setCurrentSong={setCurrentSong} />
 			<Library
 				songs={songs}
 				setCurrentSong={setCurrentSong}
