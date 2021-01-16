@@ -9,7 +9,7 @@ import musicDB from '../../data';
 
 function App() {
 	const [songs, setSongs] = useState(musicDB());
-	const [currentSong, setCurrentSong] = useState(...JSON.parse(localStorage.getItem('songs')).filter(song => song.active));
+	const [currentSong, setCurrentSong] = useState(songs[0]);
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [library, showLibrary] = useState(false);
 
@@ -17,9 +17,11 @@ function App() {
 		if (!localStorage.getItem('songs')) {
 			console.log('set localStorage');
 			localStorage.setItem('songs', JSON.stringify(musicDB()))
+			setCurrentSong(...JSON.parse(localStorage.getItem('songs')).filter(song => song.active))
 		} else {
 			console.log('we already have localStorage');
 			setSongs(JSON.parse(localStorage.getItem('songs')))
+			setCurrentSong(...JSON.parse(localStorage.getItem('songs')).filter(song => song.active))
 		}
 	}, [])
 	return (

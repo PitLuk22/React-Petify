@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStepBackward, faStepForward, faVolumeUp, faVolumeMute } from '@fortawesome/free-solid-svg-icons';
+import { faStepBackward, faStepForward, faVolumeUp, faVolumeMute, faVolumeDown } from '@fortawesome/free-solid-svg-icons';
 import { faPlayCircle, faPauseCircle } from '@fortawesome/free-regular-svg-icons';
 import Like from '../like';
 
@@ -147,6 +147,12 @@ const Player = ({ songs, currentSong, setCurrentSong, isPlaying, setIsPlaying, s
 		localStorage.setItem('songs', JSON.stringify(allSongs));
 	}
 
+	const setIconVolume = (volume) => {
+		if (volume > 0.5) return faVolumeUp;
+		else if (volume <= 0.5 && volume > 0) return faVolumeDown;
+		else return faVolumeMute
+	}
+
 	return (
 		<div className='player'>
 			<div className='control'>
@@ -169,7 +175,7 @@ const Player = ({ songs, currentSong, setCurrentSong, isPlaying, setIsPlaying, s
 			<div className='timeline'>
 				<div className="volume">
 					<FontAwesomeIcon
-						icon={songInfo.volume !== 0 ? faVolumeUp : faVolumeMute}
+						icon={setIconVolume(songInfo.volume)}
 						size={'1x'}
 						onClick={showVolumeInputHandler} />
 					<input
