@@ -19,6 +19,19 @@ const LibrarySong = ({ song, setSelectedSong, setSongs, songs, setCurrentSong })
 		if (e.target.closest('.library-song-active')) {
 			setCurrentSong(newSongs.find(item => song.id === item.id));
 		}
+
+		//localStorage
+		let allSongs = JSON.parse(localStorage.getItem('songs'))
+			.map((item) => {
+				const genSong = newSongs.find(genreSong => genreSong.name === item.name);
+				if (genSong) {
+					return genSong;
+				} else {
+					return item;
+				}
+			})
+
+		localStorage.setItem('songs', JSON.stringify(allSongs));
 		setSongs(newSongs);
 	}
 

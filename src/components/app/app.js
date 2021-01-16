@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Player from '../player';
 import Song from '../song';
 import Library from '../library'
@@ -6,14 +6,23 @@ import Nav from '../nav';
 
 import musicDB from '../../data';
 
-function App() {
 
+function App() {
 	const [songs, setSongs] = useState(musicDB());
-	const [currentSong, setCurrentSong] = useState(...songs.filter(song => song.active));
+	const [currentSong, setCurrentSong] = useState(...JSON.parse(localStorage.getItem('songs')).filter(song => song.active));
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [library, showLibrary] = useState(false);
 	const [volume, setVolume] = useState(1);
 
+	useEffect(() => {
+		if (!localStorage.getItem('songs')) {
+			console.log('set localStorage');
+			localStorage.setItem('songs', JSON.stringify(musicDB()))
+		} else {
+			console.log('we already have localStorage');
+			setSongs(JSON.parse(localStorage.getItem('songs')))
+		}
+	}, [])
 	return (
 		<div className={`app ${library ? 'ml20' : ''}`}>
 			<Nav

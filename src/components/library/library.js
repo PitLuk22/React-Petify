@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import LibrarySong from '../library-song';
 import SortMenu from '../sort-menu';
-import musicDB from '../../data';
 import { v4 as uuidv4 } from 'uuid';
 
 const Library = ({ songs, setCurrentSong, setSongs, library }) => {
@@ -24,24 +23,39 @@ const Library = ({ songs, setCurrentSong, setSongs, library }) => {
 				}
 			}
 		});
+
+		//localStorage
+		let allSongs = JSON.parse(localStorage.getItem('songs'))
+			.map((item) => {
+				const genSong = newSongs.find(genreSong => genreSong.name === item.name);
+				if (genSong) {
+					return checkActive(genSong);
+				} else {
+					return checkActive(item);
+				}
+			})
+
+		const checkActive = (song) => {
+			return selectedSong.name === song.name ? { ...song, active: true } : { ...song, active: false }
+		}
+
+		localStorage.setItem('songs', JSON.stringify(allSongs));
 		setSongs(newSongs);
 	}
 
-	const showSongsOfCurrentGenre = (genre) => {
+	const showSongsOfCurrentGenre = async (genre) => {
 
 		setGenre(genre)
 
-		const allSongs = musicDB();
+		const allSongs = await JSON.parse(localStorage.getItem('songs'));
 		if (genre === 'all') {
 			setSongs(allSongs)
 		} else {
-			const songsOfCurrentGenre = allSongs.filter(song => song.genre === genre);
+			const songsOfCurrentGenre = await allSongs.filter(song => song.genre === genre);
 			setSongs(songsOfCurrentGenre);
 		}
 
 	}
-
-
 
 	return (
 		<div className={`library ${library ? 'library-active' : ''}`}>

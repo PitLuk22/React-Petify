@@ -88,7 +88,12 @@ const Player = ({ songs, currentSong, setCurrentSong, isPlaying, setIsPlaying, s
 			}
 		});
 		console.log('player');
+
+		//localStorage
+		localStorageHandler(newSongs);
+
 		setSongs(newSongs);
+
 		setCurrentSong(nextSong);
 	}
 
@@ -117,11 +122,28 @@ const Player = ({ songs, currentSong, setCurrentSong, isPlaying, setIsPlaying, s
 			}
 		});
 
+		//localStorage
+		localStorageHandler(newSongs);
+
 		setCurrentSong({
 			...currentSong,
 			liked: !toggle
 		})
 		setSongs(newSongs);
+	}
+
+	const localStorageHandler = (newSongs) => {
+
+		let allSongs = JSON.parse(localStorage.getItem('songs'))
+			.map((item) => {
+				const genSong = newSongs.find(genreSong => genreSong.name === item.name);
+				if (genSong) {
+					return genSong;
+				} else {
+					return item;
+				}
+			})
+		localStorage.setItem('songs', JSON.stringify(allSongs));
 	}
 
 	return (
