@@ -136,7 +136,7 @@ const Player = ({ songs, currentSong, setCurrentSong, isPlaying, setIsPlaying, s
 
 		let allSongs = JSON.parse(localStorage.getItem('songs'))
 			.map((item) => {
-				const genSong = newSongs.find(genreSong => genreSong.name === item.name);
+				const genSong = newSongs.find(genreSong => genreSong.id === item.id);
 				if (genSong) {
 					return genSong;
 				} else {

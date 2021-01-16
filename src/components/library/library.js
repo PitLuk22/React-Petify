@@ -24,10 +24,14 @@ const Library = ({ songs, setCurrentSong, setSongs, library }) => {
 			}
 		});
 
+		const checkActive = (song) => {
+			return selectedSong.name === song.name ? { ...song, active: true } : { ...song, active: false }
+		}
+
 		//localStorage
 		let allSongs = JSON.parse(localStorage.getItem('songs'))
 			.map((item) => {
-				const genSong = newSongs.find(genreSong => genreSong.name === item.name);
+				const genSong = newSongs.find(genreSong => genreSong.id === item.id);
 				if (genSong) {
 					return checkActive(genSong);
 				} else {
@@ -35,9 +39,7 @@ const Library = ({ songs, setCurrentSong, setSongs, library }) => {
 				}
 			})
 
-		const checkActive = (song) => {
-			return selectedSong.name === song.name ? { ...song, active: true } : { ...song, active: false }
-		}
+
 
 		localStorage.setItem('songs', JSON.stringify(allSongs));
 		setSongs(newSongs);

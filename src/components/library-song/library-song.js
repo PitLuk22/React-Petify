@@ -23,7 +23,7 @@ const LibrarySong = ({ song, setSelectedSong, setSongs, songs, setCurrentSong })
 		//localStorage
 		let allSongs = JSON.parse(localStorage.getItem('songs'))
 			.map((item) => {
-				const genSong = newSongs.find(genreSong => genreSong.name === item.name);
+				const genSong = newSongs.find(genreSong => genreSong.id === item.id);
 				if (genSong) {
 					return genSong;
 				} else {
