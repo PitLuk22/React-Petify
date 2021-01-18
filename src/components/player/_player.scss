@@ -18,11 +18,39 @@
 		&__play {
 			margin: 0 50px;
 		}
-		&__prev, &__play, &__next {
+		&__random {
+			position: relative;
+			margin-right: 3rem;
+		}
+		&__repeat {
+			position: relative;
+			display: block;
+			width: 13px;
+			margin-left: 3rem;
+			svg {
+				fill: #b3b3b3;
+			}
+		}
+		.dot {
+			position: relative;
+			&:after {
+				content: '';
+				position: absolute;
+				top: 110%;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 4px;
+				height: 4px;
+				border-radius: 50%;
+				background-color:  #1db954;
+			}
+		}
+		&__prev, &__play, &__next, &__random, &__repeat {
 			transition: .3s all ease;
 			cursor: pointer;
 			&:hover {
 				color: #1db954;
+				fill: #1db954;
 			}
 		}
 	}
