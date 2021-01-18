@@ -25,9 +25,11 @@
 		&__repeat {
 			position: relative;
 			display: block;
-			width: 13px;
+			min-width: 13px;
 			margin-left: 3rem;
 			svg {
+				min-width: 13px;
+				height: 13px;
 				fill: #b3b3b3;
 			}
 		}
