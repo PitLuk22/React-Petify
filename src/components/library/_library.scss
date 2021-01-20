@@ -24,6 +24,19 @@
 		transform: translateX(0);
 		box-shadow: 5px 5px 40px rgb(0,0,0);
 	}
+	.empty {
+		font-size: 1.5rem;
+		width: 100%;
+		text-align: center;
+		padding-left: 2rem;
+		margin-top: 7rem;
+		h3 {
+			margin-bottom: 1rem;
+		}
+		svg {
+			margin: 0 .5rem;
+		}
+	}
 }
 
 @media screen and (max-width: 768px) {
