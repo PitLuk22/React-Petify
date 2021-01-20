@@ -6,9 +6,9 @@
 	margin-bottom: 1rem;
 	margin-left: 2rem;
 	cursor: pointer;
-	transition: all .1s ease;
+	transition: all .3s ease;
 	&:hover {
-		background-color: #5b5b5ba3;
+		background-color: #0000007d;
 	}
 	&__block {
 		position: relative;
@@ -19,7 +19,7 @@
 		width: 100%;
 	}
 	.active {
-		opacity: .7;
+		opacity: .9;
 	}
 	&__descr {
 		display: flex;
@@ -39,7 +39,7 @@
 }
 
 .library-song-active {
-	background-color: #0000007d;
+	background-color: #5b5b5ba3;
 	h3 {
 		color: #1db954;
 	}
