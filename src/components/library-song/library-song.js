@@ -1,10 +1,12 @@
 import React from 'react';
 import Like from '../like'
+import Waves from '../waves';
 
 const LibrarySong = ({ song, setSelectedSong, setSongs, songs, setCurrentSong }) => {
 
 	const { name, cover, artist, active } = song;
 	const activeClass = active ? ' library-song-active' : '';
+	const activeImgClass = active ? 'active' : '';
 
 	const setLikeHandlerLibrary = (e, toggle) => {
 		e.stopPropagation();
@@ -38,7 +40,10 @@ const LibrarySong = ({ song, setSelectedSong, setSongs, songs, setCurrentSong })
 	return (
 		<div>
 			<div onClick={() => setSelectedSong(song)} className={`library-song ${activeClass}`}>
-				<img src={cover} className="library-song__img" alt={name} />
+				<div className='library-song__block'>
+					<img src={cover} className={`library-song__img ${activeImgClass}`} alt={name} />
+					{active && <Waves />}
+				</div>
 				<div className="library-song__descr">
 					<h3>{name}</h3>
 					<h4>{artist}</h4>

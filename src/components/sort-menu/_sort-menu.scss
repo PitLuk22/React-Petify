@@ -6,6 +6,12 @@
 		display: flex;
 		margin-bottom: 1rem;
 		justify-content: space-around;
+		&-liked {
+			width: 100%;
+			.sort-menu__item {
+				width: 90%;
+			}
+		}
 	}
 	&__item {
 		position: relative;

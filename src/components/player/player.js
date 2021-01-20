@@ -16,7 +16,7 @@ const Player = ({ songs, currentSong, setCurrentSong, isPlaying, setIsPlaying, s
 		duration: 0,
 		'volume': volume
 	})
-	const [repeat, setRepeat] = useState(true);
+	const [repeat, setRepeat] = useState(false);
 	const [random, setRandom] = useState(false);
 
 	const audioRef = useRef(null);

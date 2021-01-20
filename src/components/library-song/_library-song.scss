@@ -10,10 +10,16 @@
 	&:hover {
 		background-color: #5b5b5ba3;
 	}
-	&__img {
-		width: 30%;
+	&__block {
+		position: relative;
+		max-width: 30%;
 		margin-right: 2rem;
-		transition: all .1s ease;
+	}
+	&__img {
+		width: 100%;
+	}
+	.active {
+		opacity: .7;
 	}
 	&__descr {
 		display: flex;

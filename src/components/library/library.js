@@ -52,8 +52,11 @@ const Library = ({ songs, setCurrentSong, setSongs, library }) => {
 		const allSongs = await JSON.parse(localStorage.getItem('songs'));
 		if (genre === 'all') {
 			setSongs(allSongs)
+		} else if (genre === 'liked') {
+			const likedSongs = allSongs.filter(song => song.liked);
+			setSongs(likedSongs);
 		} else {
-			const songsOfCurrentGenre = await allSongs.filter(song => song.genre === genre);
+			const songsOfCurrentGenre = allSongs.filter(song => song.genre === genre);
 			setSongs(songsOfCurrentGenre);
 		}
 
