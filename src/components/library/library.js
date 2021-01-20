@@ -77,7 +77,7 @@ const Library = ({ songs, setCurrentSong, setSongs, library }) => {
 				{
 					!haveLiked && genre === 'liked'
 						? <div className='empty'>
-							<h3>Nothing have been added</h3>
+							<h3>Nothing has been added</h3>
 							<small>Click <FontAwesomeIcon icon={faHeart} size={'sm'} color={'#1db954'} /> to add track</small>
 						</div>
 						: songs.map(song => <LibrarySong
