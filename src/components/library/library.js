@@ -66,7 +66,7 @@ const Library = ({ songs, setCurrentSong, setSongs, library }) => {
 		}
 
 	}
-	console.log(haveLiked);
+	console.log('library');
 	return (
 		<div className={`library ${library ? 'library-active' : ''}`}>
 			<h2>Library</h2>

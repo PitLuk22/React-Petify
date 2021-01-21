@@ -36,7 +36,7 @@ const LibrarySong = ({ song, setSelectedSong, setSongs, songs, setCurrentSong, h
 		localStorage.setItem('songs', JSON.stringify(allSongs));
 		setSongs(newSongs);
 	}
-
+	console.log('library-song');
 	return (
 		<div onClick={() => setSelectedSong(song)} className={`library-song ${activeClass}`}>
 			<div className='library-song__block'>

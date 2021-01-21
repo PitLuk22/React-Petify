@@ -15,11 +15,9 @@ function App() {
 
 	useEffect(() => {
 		if (!localStorage.getItem('songs')) {
-			console.log('set localStorage');
 			localStorage.setItem('songs', JSON.stringify(musicDB()))
 			setCurrentSong(...JSON.parse(localStorage.getItem('songs')).filter(song => song.active))
 		} else {
-			console.log('we already have localStorage');
 			setSongs(JSON.parse(localStorage.getItem('songs')))
 			setCurrentSong(...JSON.parse(localStorage.getItem('songs')).filter(song => song.active))
 		}
