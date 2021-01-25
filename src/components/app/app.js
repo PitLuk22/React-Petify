@@ -13,6 +13,8 @@ function App() {
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [library, showLibrary] = useState(false);
 
+	document.body.style.overflow = library ? 'hidden' : 'auto';
+
 	useEffect(() => {
 		if (!localStorage.getItem('songs')) {
 			localStorage.setItem('songs', JSON.stringify(musicDB()))
