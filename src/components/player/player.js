@@ -7,7 +7,7 @@ import Like from '../like';
 import { playAudio } from '../../util';
 
 
-const Player = ({ songs, currentSong, setCurrentSong, isPlaying, setIsPlaying, setSongs }) => {
+const Player = ({ songsToRender, songs, currentSong, setCurrentSong, isPlaying, setIsPlaying, setSongs }) => {
 
 	const [volumeInput, showVolumeInput] = useState(false);
 	const [volume, setVolume] = useState(1);
@@ -67,35 +67,25 @@ const Player = ({ songs, currentSong, setCurrentSong, isPlaying, setIsPlaying, s
 	}
 
 	const nextSong = (n) => {
-		console.log(n);
-		const index = songs.findIndex(song => song.active);
+
+		const index = songsToRender.findIndex(song => song.active);
 
 		// define next track 
 		let nextSong;
 		if (n >= 0) {
-			nextSong = songs[(index + n) % songs.length];
+			nextSong = songsToRender[(index + n) % songsToRender.length];
 		} else {
-			nextSong = index + n < 0 ? songs[songs.length - 1] : songs[index + n];
+			nextSong = index + n < 0 ? songsToRender[songsToRender.length - 1] : songsToRender[index + n];
 		}
 
 		// set prop active to false, but next track to true
-		const newSongs = songs.map(song => {
-			if (nextSong.id === song.id) {
-				return {
-					...song,
-					active: true
-				}
-			} else {
-				return {
-					...song,
-					active: false
-				}
-			}
-		});
-		console.log('player');
+		const newSongs = songs
+			.map(song => nextSong.id === song.id
+				? { ...song, active: true }
+				: { ...song, active: false });
 
 		//localStorage
-		localStorageHandler(newSongs);
+		localStorage.setItem('songs', JSON.stringify(newSongs));
 
 		setSongs(newSongs);
 
@@ -117,38 +107,21 @@ const Player = ({ songs, currentSong, setCurrentSong, isPlaying, setIsPlaying, s
 		showVolumeInput(!volumeInput);
 	}
 
-	const setLikeHandler = (e, toggle) => {
-
-		const newSongs = songs.map(song => {
-			if (currentSong.id === song.id) {
-				return { ...song, liked: !toggle }
-			} else {
-				return { ...song }
-			}
-		});
+	const setLikeHandler = (e) => {
+		let currentLike = currentSong.liked;
+		const newSongs = songs
+			.map(song => currentSong.id === song.id
+				? { ...song, liked: !currentLike }
+				: { ...song });
 
 		//localStorage
-		localStorageHandler(newSongs);
+		localStorage.setItem('songs', JSON.stringify(newSongs));
 
 		setCurrentSong({
 			...currentSong,
-			liked: !toggle
+			liked: !currentLike
 		})
 		setSongs(newSongs);
-	}
-
-	const localStorageHandler = (newSongs) => {
-
-		let allSongs = JSON.parse(localStorage.getItem('songs'))
-			.map((item) => {
-				const genSong = newSongs.find(genreSong => genreSong.id === item.id);
-				if (genSong) {
-					return genSong;
-				} else {
-					return item;
-				}
-			})
-		localStorage.setItem('songs', JSON.stringify(allSongs));
 	}
 
 	const setIconVolume = (volume) => {
@@ -246,7 +219,7 @@ const Player = ({ songs, currentSong, setCurrentSong, isPlaying, setIsPlaying, s
 				<p className='timeline__end'>{songInfo.duration ? getTime(songInfo.duration) : `0:00`}</p>
 				<Like
 					setLikeHandler={(e, toggle) => setLikeHandler(e, toggle)}
-					currentSong={currentSong} />
+					like={currentSong.liked} />
 			</div>
 
 			<audio

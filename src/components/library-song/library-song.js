@@ -2,17 +2,18 @@ import React from 'react';
 import Like from '../like'
 import Waves from '../waves';
 
-const LibrarySong = ({ song, setSelectedSong, setSongs, songs, setCurrentSong, haveLiked }) => {
+const LibrarySong = ({ song, setSelectedSong, setSongs, songs, setCurrentSong }) => {
 
-	const { name, cover, artist, active } = song;
+	const { id, name, cover, artist, active } = song;
 	const activeClass = active ? ' library-song-active' : '';
 	const activeImgClass = active ? 'active' : '';
 
-	const setLikeHandlerLibrary = (e, toggle) => {
+	const setLikeHandlerLibrary = (e) => {
 		e.stopPropagation();
 		const newSongs = songs.map(currentSong => {
+			let currentLike = currentSong.liked;
 			if (currentSong.id === song.id) {
-				return { ...currentSong, liked: !toggle }
+				return { ...currentSong, liked: !currentLike }
 			} else {
 				return { ...currentSong }
 			}
@@ -22,21 +23,10 @@ const LibrarySong = ({ song, setSelectedSong, setSongs, songs, setCurrentSong, h
 			setCurrentSong(newSongs.find(item => song.id === item.id));
 		}
 
-		//localStorage
-		let allSongs = JSON.parse(localStorage.getItem('songs'))
-			.map((item) => {
-				const genSong = newSongs.find(genreSong => genreSong.id === item.id);
-				if (genSong) {
-					return genSong;
-				} else {
-					return item;
-				}
-			})
-
-		localStorage.setItem('songs', JSON.stringify(allSongs));
+		localStorage.setItem('songs', JSON.stringify(newSongs));
 		setSongs(newSongs);
 	}
-	console.log('library-song');
+
 	return (
 		<div onClick={() => setSelectedSong(song)} className={`library-song ${activeClass}`}>
 			<div className='library-song__block'>
@@ -48,8 +38,8 @@ const LibrarySong = ({ song, setSelectedSong, setSongs, songs, setCurrentSong, h
 				<h4>{artist}</h4>
 			</div>
 			<Like
-				setLikeHandler={(e, toggle) => setLikeHandlerLibrary(e, toggle)}
-				currentSong={song} />
+				setLikeHandler={(e) => setLikeHandlerLibrary(e, id)}
+				like={song.liked} />
 		</div>
 
 	)

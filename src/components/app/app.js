@@ -13,6 +13,8 @@ function App() {
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [library, showLibrary] = useState(false);
 
+	const [genre, setGenre] = useState('all');
+
 	document.body.style.overflow = library ? 'hidden' : 'auto';
 
 	useEffect(() => {
@@ -24,6 +26,22 @@ function App() {
 			setCurrentSong(...JSON.parse(localStorage.getItem('songs')).filter(song => song.active))
 		}
 	}, [])
+
+	const showSongsOfCurrentGenre = (genre) => {
+
+		if (genre === 'all') {
+			return songs;
+		} else if (genre === 'liked') {
+			const likedSongs = songs.filter(song => song.liked);
+			return likedSongs;
+		} else {
+			const songsOfCurrentGenre = songs.filter(song => song.genre === genre);
+			return songsOfCurrentGenre;
+		}
+	}
+
+	const songsToRender = showSongsOfCurrentGenre(genre);
+
 	return (
 		<div className={`app ${library ? 'ml20' : ''}`}>
 			<Nav
@@ -33,6 +51,7 @@ function App() {
 				currentSong={currentSong}
 				isPlaying={isPlaying} />
 			<Player
+				songsToRender={songsToRender}
 				songs={songs}
 				setSongs={setSongs}
 				isPlaying={isPlaying}
@@ -40,10 +59,13 @@ function App() {
 				currentSong={currentSong}
 				setCurrentSong={setCurrentSong} />
 			<Library
+				songsToRender={songsToRender}
 				songs={songs}
 				setCurrentSong={setCurrentSong}
 				setSongs={setSongs}
-				library={library} />
+				library={library}
+				genre={genre}
+				setGenre={setGenre} />
 		</div>
 	);
 }
