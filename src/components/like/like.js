@@ -1,24 +1,19 @@
 import React from 'react';
-import Lottie from 'lottie-react-web';
-import likeImg from './like.json';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart as faHeartFilled } from '@fortawesome/free-solid-svg-icons'
+import { faHeart as faHeartEmpty } from '@fortawesome/free-regular-svg-icons'
 
 const Like = ({ setLikeHandler, like }) => {
 
+	const likeStyle = {
+		width: '20px',
+		height: 'auto',
+		color: like ? '#1db954' : '#3e3e3e'
+	}
+
 	return (
-		<div onClick={(e) => {
-			setLikeHandler(e)
-		}}
-			className='like'>
-			<Lottie
-				width={'35px'}
-				height={'35px'}
-				direction={like ? 1 : -1}
-				speed={2}
-				options={{
-					animationData: likeImg,
-					loop: false,
-				}}
-			/>
+		<div className='like' onClick={(e) => setLikeHandler(e)}>
+			<FontAwesomeIcon style={likeStyle} icon={like ? faHeartFilled : faHeartEmpty} />
 		</div>
 	)
 }
