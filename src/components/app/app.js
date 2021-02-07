@@ -26,7 +26,7 @@ function App() {
 			setCurrentSong(...JSON.parse(localStorage.getItem('songs')).filter(song => song.active))
 		}
 	}, [])
-	console.log('app');
+
 	const showSongsOfCurrentGenre = (genre) => {
 
 		if (genre === 'all') {

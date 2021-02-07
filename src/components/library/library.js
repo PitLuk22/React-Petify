@@ -19,7 +19,7 @@ const Library = ({ songsToRender, songs, setCurrentSong, setSongs, library, genr
 		localStorage.setItem('songs', JSON.stringify(newSongs));
 		setSongs(newSongs);
 	}
-	console.log('library');
+
 	return (
 		<div className={`library ${library ? 'library-active' : ''}`}>
 			<h2>Library</h2>
